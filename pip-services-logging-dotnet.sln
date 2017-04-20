@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{99176F32-B2D4-4666-9DE6-1D7257705E2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB7DAD03-1FD4-4665-B7A6-F39992515769}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{C767939F-7568-4A0F-9CB3-3A5CD0D96C4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PipServices.Logging.NetCoreApp11", "src\PipServices.Logging.NetCoreApp11\PipServices.Logging.NetCoreApp11.csproj", "{26E2F102-F89C-4471-AAAC-B428BF1763EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26E2F102-F89C-4471-AAAC-B428BF1763EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26E2F102-F89C-4471-AAAC-B428BF1763EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26E2F102-F89C-4471-AAAC-B428BF1763EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26E2F102-F89C-4471-AAAC-B428BF1763EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{26E2F102-F89C-4471-AAAC-B428BF1763EF} = {99176F32-B2D4-4666-9DE6-1D7257705E2C}
+	EndGlobalSection
+EndGlobal
