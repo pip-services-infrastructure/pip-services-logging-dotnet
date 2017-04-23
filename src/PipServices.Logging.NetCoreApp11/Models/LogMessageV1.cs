@@ -14,14 +14,19 @@ namespace PipServices.Logging.Models
         public ErrorDescription Error { get; private set; }
         public string Message { get; private set; }
 
-        public LogMessageV1(LogLevel level, string source, string correlationId, ErrorDescription error, string message)
+        public LogMessageV1(DateTime datetime, LogLevel level, string source, string correlationId, ErrorDescription error, string message)
         {
-            Time = DateTime.UtcNow;
+            Time = datetime;
             Level = level;
             Source = source;
             CorrelationId = correlationId;
             Error = error;
             Message = message;
+        }
+
+        public LogMessageV1(LogLevel level, string source, string correlationId, ErrorDescription error, string message)
+            : this(DateTime.UtcNow, level, source, correlationId, error, message)
+        {
         }
     }
 }

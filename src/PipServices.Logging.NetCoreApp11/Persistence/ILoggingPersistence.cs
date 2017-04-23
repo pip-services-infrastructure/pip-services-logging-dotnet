@@ -5,9 +5,9 @@ using PipServices.Logging.Models;
 
 using System.Threading.Tasks;
 
-namespace PipServices.Logging.Memory
+namespace PipServices.Logging.Persistence
 {
-    public interface ILoggingMemoryPersistence : ICleanable, IConfigurable
+    public interface ILoggingPersistence : ICleanable, IConfigurable
     {
         Task<LogMessageV1[]> GetPageByFilterAsync(string correlationId, FilterParams filter, PagingParams paging);
         Task CreateAsync(string correlationId, LogMessageV1 message);

@@ -3,7 +3,7 @@ using PipServices.Commons.Build;
 using PipServices.Commons.Refer;
 using PipServices.Logging.Clients;
 using PipServices.Logging.Logic;
-using PipServices.Logging.Memory;
+using PipServices.Logging.Persistence;
 using PipServices.Logging.Services;
 
 namespace PipServices.Logging.Build

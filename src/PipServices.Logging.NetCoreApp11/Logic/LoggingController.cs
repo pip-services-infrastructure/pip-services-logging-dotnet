@@ -4,23 +4,24 @@ using PipServices.Commons.Config;
 using PipServices.Commons.Data;
 using PipServices.Commons.Errors;
 using PipServices.Commons.Refer;
-using PipServices.Logging.Memory;
+
+using PipServices.Logging.Persistence;
 using PipServices.Logging.Models;
 
 namespace PipServices.Logging.Logic
 {
     public class LoggingController : ILoggingBusinessLogic, IReferenceable, IConfigurable
     {
-        private ILoggingMemoryPersistence _readPersistence;
-        private ILoggingMemoryPersistence _writePersistence;
+        private ILoggingPersistence _readPersistence;
+        private ILoggingPersistence _writePersistence;
 
         public void SetReferences(IReferences references)
         {
             references.Put("read_persistence", new Descriptor("pip-services-logging", "persistence", "*", "*", "*"));
             references.Put("write_persistence", new Descriptor("pip-services-logging", "persistence", "*", "*", "*"));
 
-            _readPersistence = references.GetOneRequired<ILoggingMemoryPersistence>("read_persistence");
-            _writePersistence = references.GetOneOptional<ILoggingMemoryPersistence>("write_persistence");
+            _readPersistence = references.GetOneRequired<ILoggingPersistence>("read_persistence");
+            _writePersistence = references.GetOneOptional<ILoggingPersistence>("write_persistence");
 
             if (_readPersistence == null)
             {

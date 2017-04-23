@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}\\bin\\HPD\\Debug\\netcoreapp1.1\\PipServices.Logging.NetCoreApp11.dll",
+            "program": "${workspaceRoot}\\bin\\Debug\\netcoreapp1.1\\PipServices.Logging.NetCoreApp11.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
             "console": "internalConsole",

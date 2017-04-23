@@ -6,30 +6,40 @@ using PipServices.Commons.Data;
 using PipServices.Logging.Models;
 using PipServices.Commons.Log;
 
-namespace PipServices.Logging.Memory
+namespace PipServices.Logging.Persistence
 {
-    public class LoggingMemoryPersistence : ILoggingMemoryPersistence
+    public class LoggingMemoryPersistence : ILoggingPersistence
     {
-        private int _maxPageSize = 100;
-        private int _maxErrorSize = 1000;
-        private int _maxTotalSize = 10000;
+        public int MaxPageSize { get; private set; }
+        public int MaxErrorSize { get; private set; }
+        public int MaxTotalSize { get; private set; }
 
-        private List<LogMessageV1> _messages = new List<LogMessageV1>();
-        private List<LogMessageV1> _errorMessages = new List<LogMessageV1>();
+        public List<LogMessageV1> Messages { get; private set; }
+        public List<LogMessageV1> ErrorMessages { get; private set; }
+
+        public LoggingMemoryPersistence()
+        {
+            MaxPageSize = 100;
+            MaxErrorSize = 1000;
+            MaxTotalSize = 10000;
+
+            Messages = new List<LogMessageV1>();
+            ErrorMessages = new List<LogMessageV1>();
+        }
 
         public void Configure(ConfigParams config)
         {
-            _maxPageSize = config.GetAsIntegerWithDefault("options.max_page_size", _maxPageSize);
-            _maxErrorSize = config.GetAsIntegerWithDefault("options.max_error_size", _maxErrorSize);
-            _maxTotalSize = config.GetAsIntegerWithDefault("options.max_total_size", _maxTotalSize);
+            MaxPageSize = config.GetAsIntegerWithDefault("options.max_page_size", MaxPageSize);
+            MaxErrorSize = config.GetAsIntegerWithDefault("options.max_error_size", MaxErrorSize);
+            MaxTotalSize = config.GetAsIntegerWithDefault("options.max_total_size", MaxTotalSize);
         }
 
         public Task ClearAsync(string correlationId)
         {
             return Task.Run( () => 
             {
-                _messages = new List<LogMessageV1>();
-                _errorMessages = new List<LogMessageV1>();
+                Messages = new List<LogMessageV1>();
+                ErrorMessages = new List<LogMessageV1>();
             });
         }
 
@@ -38,14 +48,14 @@ namespace PipServices.Logging.Memory
             return Task.Run(() =>
             {
                 // Add to all messages
-                TruncateMessages(_messages, _maxTotalSize);
-                InsertMessage(message, _messages);
+                TruncateMessages(Messages, MaxTotalSize);
+                InsertMessage(message, Messages);
 
                 // Add to errors separately
                 if (message.Level <= LogLevel.Error)
                 {
-                    TruncateMessages(_errorMessages, _maxErrorSize);
-                    InsertMessage(message, _errorMessages);
+                    TruncateMessages(ErrorMessages, MaxErrorSize);
+                    InsertMessage(message, ErrorMessages);
                 }
             });
         }
@@ -63,10 +73,10 @@ namespace PipServices.Logging.Memory
 
             paging = paging ?? new PagingParams();
             var skip = paging.GetSkip(0);
-            var take = paging.GetTake(_maxPageSize);
+            var take = paging.GetTake(MaxPageSize);
             var data = new List<LogMessageV1>();
 
-            var messages = errorsOnly ? _errorMessages : _messages;
+            var messages = errorsOnly ? ErrorMessages : Messages;
             for (var index = 0; index < messages.Count; index++)
             {
                 var message = messages[index];
@@ -110,7 +120,7 @@ namespace PipServices.Logging.Memory
                 }
             }
 
-            return null;
+            return Task.FromResult(data.ToArray());
         }
 
         private bool MessageContains(LogMessageV1 message, string search)
@@ -181,7 +191,7 @@ namespace PipServices.Logging.Memory
 
         private void TruncateMessages(List<LogMessageV1> messages, int maxTotalSize)
         {
-            if (messages.Count > maxTotalSize)
+            if (messages.Count >= maxTotalSize)
             {
                 messages.RemoveRange(maxTotalSize - 1, messages.Count - maxTotalSize + 1);
             }
