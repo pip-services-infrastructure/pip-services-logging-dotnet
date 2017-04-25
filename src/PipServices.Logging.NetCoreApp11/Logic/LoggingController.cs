@@ -2,9 +2,7 @@
 
 using PipServices.Commons.Config;
 using PipServices.Commons.Data;
-using PipServices.Commons.Errors;
 using PipServices.Commons.Refer;
-
 using PipServices.Logging.Persistence;
 using PipServices.Logging.Models;
 
@@ -12,37 +10,35 @@ namespace PipServices.Logging.Logic
 {
     public class LoggingController : ILoggingBusinessLogic, IReferenceable, IConfigurable
     {
-        private ILoggingPersistence _readPersistence;
-        private ILoggingPersistence _writePersistence;
+        private readonly DependencyResolver _dependencyResolver;
+
+        public ILoggingPersistence WritePersistence { get; private set; }
+        public ILoggingPersistence ReadPersistence { get; private set; }
+
+        public LoggingController()
+        {
+            _dependencyResolver = new DependencyResolver();
+
+            _dependencyResolver.Put("read_persistence", new Descriptor("pip-services-logging", "persistence", "*", "*", "*"));
+            _dependencyResolver.Put("write_persistence", new Descriptor("pip-services-logging", "persistence", "*", "*", "*"));
+        }
 
         public void SetReferences(IReferences references)
         {
-            references.Put("read_persistence", new Descriptor("pip-services-logging", "persistence", "*", "*", "*"));
-            references.Put("write_persistence", new Descriptor("pip-services-logging", "persistence", "*", "*", "*"));
+            _dependencyResolver.SetReferences(references);
 
-            _readPersistence = references.GetOneRequired<ILoggingPersistence>("read_persistence");
-            _writePersistence = references.GetOneOptional<ILoggingPersistence>("write_persistence");
-
-            if (_readPersistence == null)
-            {
-                throw new ConfigException(null, "NO_PERSISTENCE", "Read Logging Memory Persistance is not configured");
-            }
-
-            if (_writePersistence == null)
-            {
-                throw new ConfigException(null, "NO_PERSISTENCE", "Write Logging Memory Persistance is not configured");
-            }
+            ReadPersistence = _dependencyResolver.GetOneRequired<ILoggingPersistence>("read_persistence");
+            WritePersistence = _dependencyResolver.GetOneOptional<ILoggingPersistence>("write_persistence");
         }
 
         public void Configure(ConfigParams config)
         {
-            _readPersistence.Configure(config);
-            _writePersistence.Configure(config);
+            _dependencyResolver.Configure(config);
         }
 
         public Task<LogMessageV1[]> ReadMessagesAsync(string correlationId, FilterParams filter, PagingParams paging)
         {
-            return _readPersistence.GetPageByFilterAsync(correlationId, filter, paging);
+            return ReadPersistence.GetPageByFilterAsync(correlationId, filter, paging);
         }
 
         public Task<LogMessageV1[]> ReadErrorsAsync(string correlationId, FilterParams filter, PagingParams paging)
@@ -50,12 +46,12 @@ namespace PipServices.Logging.Logic
             filter = filter ?? new FilterParams();
             filter.SetAsObject("errors_only", true);
 
-            return _readPersistence.GetPageByFilterAsync(correlationId, filter, paging);
+            return ReadPersistence.GetPageByFilterAsync(correlationId, filter, paging);
         }
 
         public Task WriteMessageAsync(string correlationId, LogMessageV1 message)
         {
-            return _writePersistence.CreateAsync(correlationId, message);
+            return WritePersistence.CreateAsync(correlationId, message);
         }
 
         public Task WriteMessagesAsync(string correlationId, LogMessageV1[] messages)
@@ -64,14 +60,14 @@ namespace PipServices.Logging.Logic
             {
                 foreach (var message in messages)
                 {
-                    _writePersistence.CreateAsync(correlationId, message);
+                    WritePersistence.CreateAsync(correlationId, message).Wait();
                 }
             } );
         }
 
         public Task ClearAsync(string correlationId)
         {
-            return _writePersistence.ClearAsync(correlationId);
+            return WritePersistence.ClearAsync(correlationId);
         }
     }
 }
