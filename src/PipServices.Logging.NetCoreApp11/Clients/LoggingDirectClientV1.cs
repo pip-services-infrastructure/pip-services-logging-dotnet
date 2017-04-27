@@ -14,6 +14,12 @@ namespace PipServices.Logging.Clients
     {
         private ILoggingBusinessLogic _controller;
 
+        public LoggingDirectClientV1()
+        {
+            // ??? TODO: Investigate later - it exists in node.js code
+            //_dependencyResolver.put('controller', new Descriptor("pip-services-logging", "controller", "*", "*", "*"))
+        }
+
         public override bool IsOpened()
         {
             return _controller != null;
