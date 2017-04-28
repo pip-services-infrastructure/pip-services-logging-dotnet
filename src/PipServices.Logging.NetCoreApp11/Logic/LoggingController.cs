@@ -5,15 +5,18 @@ using PipServices.Commons.Data;
 using PipServices.Commons.Refer;
 using PipServices.Logging.Persistence;
 using PipServices.Logging.Models;
+using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace PipServices.Logging.Logic
 {
-    public class LoggingController : ILoggingBusinessLogic, IReferenceable, IConfigurable
+    public class LoggingController : ILoggingBusinessLogic, IConfigurable
     {
         private readonly DependencyResolver _dependencyResolver;
 
-        public ILoggingPersistence WritePersistence { get; private set; }
-        public ILoggingPersistence ReadPersistence { get; private set; }
+        private ILoggingPersistence WritePersistence { get; set; }
+        private ILoggingPersistence ReadPersistence { get; set; }
 
         public LoggingController()
         {
@@ -56,13 +59,8 @@ namespace PipServices.Logging.Logic
 
         public Task WriteMessagesAsync(string correlationId, LogMessageV1[] messages)
         {
-            return Task.Run( ()=> 
-            {
-                foreach (var message in messages)
-                {
-                    WritePersistence.CreateAsync(correlationId, message).Wait();
-                }
-            } );
+            var tasks = messages.Select(message => WriteMessageAsync(correlationId, message));
+            return Task.WhenAll(tasks);
         }
 
         public Task ClearAsync(string correlationId)
