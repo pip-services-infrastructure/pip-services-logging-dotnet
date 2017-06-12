@@ -4,6 +4,7 @@ using PipServices.Commons.Log;
 using PipServices.Logging.Models;
 
 using System;
+using PipServices.Commons.Data;
 
 namespace PipServices.Logging.NetCoreApp11.Test
 {
@@ -30,6 +31,9 @@ namespace PipServices.Logging.NetCoreApp11.Test
         public DateTime ThreeDaysAgo { get; set; }
         public DateTime TwoDaysAgo { get; set; }
         public DateTime OneDayAgo { get; set; }
+
+        public FilterParams FilterParams { get; set; }
+        public PagingParams PagingParams { get; set; }
 
         public TestModel()
         {
@@ -59,6 +63,9 @@ namespace PipServices.Logging.NetCoreApp11.Test
             SampleErrorMessage1 = new LogMessageV1(FiveDaysAgo, LogLevel.Error, "Persistence", CorrelationId, new ErrorDescription() { Code = "911" }, "Test Error Message #1");
             SampleErrorMessage2 = new LogMessageV1(ThreeDaysAgo, LogLevel.Fatal, "Persistence", CorrelationId, new ErrorDescription() { }, "Test Error Message #2");
             SampleErrorMessage3 = new LogMessageV1(OneDayAgo, LogLevel.Fatal, "Persistence", CorrelationId, new ErrorDescription() { Cause = "Bad luck" }, "Test Error Message #3");
+
+            FilterParams = new FilterParams();
+            PagingParams = new PagingParams();
         }
     }
 }

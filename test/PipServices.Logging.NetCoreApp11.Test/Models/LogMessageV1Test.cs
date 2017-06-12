@@ -23,7 +23,7 @@ namespace PipServices.Logging.NetCoreApp11.Test.Models
 
             Assert.Equal(level, logMessage.Level);
             Assert.Equal(source, logMessage.Source);
-            Assert.Equal(correlationId, logMessage.CorrelationId);
+            Assert.Equal(correlationId, logMessage.Correlation_Id);
             Assert.Equal(error, logMessage.Error);
             Assert.Equal(message, logMessage.Message);
         }

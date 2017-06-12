@@ -130,7 +130,7 @@ namespace PipServices.Logging.Persistence
                 return true;
             }
 
-            if (MatchString(message.CorrelationId, search))
+            if (MatchString(message.Correlation_Id, search))
             {
                 return true;
             }

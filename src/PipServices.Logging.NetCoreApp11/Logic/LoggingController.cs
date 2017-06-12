@@ -1,19 +1,20 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 
 using PipServices.Commons.Config;
 using PipServices.Commons.Data;
 using PipServices.Commons.Refer;
 using PipServices.Logging.Persistence;
 using PipServices.Logging.Models;
-using System.Collections.Generic;
-using System;
-using System.Linq;
+using PipServices.Commons.Commands;
+using PipServices.Logging.Logic.Commands;
 
 namespace PipServices.Logging.Logic
 {
-    public class LoggingController : ILoggingBusinessLogic, IConfigurable
+    public class LoggingController : ILoggingController, IConfigurable
     {
         private readonly DependencyResolver _dependencyResolver;
+        private LoggingCommandSet _commandSet;
 
         private ILoggingPersistence WritePersistence { get; set; }
         private ILoggingPersistence ReadPersistence { get; set; }
@@ -24,6 +25,11 @@ namespace PipServices.Logging.Logic
 
             _dependencyResolver.Put("read_persistence", new Descriptor("pip-services-logging", "persistence", "*", "*", "*"));
             _dependencyResolver.Put("write_persistence", new Descriptor("pip-services-logging", "persistence", "*", "*", "*"));
+        }
+
+        public CommandSet GetCommandSet()
+        {
+            return _commandSet ?? (_commandSet = new LoggingCommandSet(this));
         }
 
         public void SetReferences(IReferences references)

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using System.Net.Http;
 
 using PipServices.Commons.Data;
 using PipServices.Logging.Models;
@@ -7,14 +6,23 @@ using PipServices.Net.Rest;
 
 namespace PipServices.Logging.Clients
 {
-    public class LoggingHttpClientV1 : RestClient, ILoggingClientV1
+    public class LoggingHttpClientV1 : CommandableHttpClient, ILoggingClientV1
     {
+        public LoggingHttpClientV1() 
+            : base("logging")
+        {
+        }
+
         public Task ClearAsync(string correlationId)
         {
             using (var timing = Instrument(correlationId))
             {
-                return ExecuteAsync(correlationId, HttpMethod.Post, 
-                    $"logging?correlation_id={correlationId}");
+                var requestEntity = new
+                {
+                    correlation_id = correlationId
+                };
+
+                return CallCommand<Task>("clear", correlationId, requestEntity);
             }
         }
 
@@ -22,8 +30,17 @@ namespace PipServices.Logging.Clients
         {
             using (var timing = Instrument(correlationId))
             {
-                return ExecuteAsync<LogMessageV1[]>(correlationId, HttpMethod.Get,
-                    $"logging/errors?correlation_id={correlationId}&filter={filter}&paging={paging}");
+                filter = filter ?? new FilterParams();
+                paging = paging ?? new PagingParams();
+
+                var requestEntity = new
+                {
+                    correlation_id = correlationId,
+                    filter,
+                    paging
+                };
+
+                return CallCommand<LogMessageV1[]>("read_errors", correlationId, requestEntity);
             }
         }
 
@@ -31,8 +48,17 @@ namespace PipServices.Logging.Clients
         {
             using (var timing = Instrument(correlationId))
             {
-                return ExecuteAsync<LogMessageV1[]>(correlationId, HttpMethod.Get,
-                    $"logging/messages?correlation_id={correlationId}&filter={filter}&paging={paging}");
+                filter = filter ?? new FilterParams();
+                paging = paging ?? new PagingParams();
+
+                var requestEntity = new
+                {
+                    correlation_id = correlationId,
+                    filter,
+                    paging
+                };
+
+                return CallCommand<LogMessageV1[]>("read_messages", correlationId, requestEntity);
             }
         }
 
@@ -40,8 +66,13 @@ namespace PipServices.Logging.Clients
         {
             using (var timing = Instrument(correlationId))
             {
-                return ExecuteAsync(correlationId, HttpMethod.Post,
-                    $"logging?correlation_id={correlationId}", message);
+                var requestEntity = new
+                {
+                    correlation_id = correlationId,
+                    message
+                };
+
+                return CallCommand<Task>("write_message", correlationId, requestEntity);
             }
         }
 
@@ -49,8 +80,13 @@ namespace PipServices.Logging.Clients
         {
             using (var timing = Instrument(correlationId))
             {
-                return ExecuteAsync(correlationId, HttpMethod.Post,
-                    $"logging?correlation_id={correlationId}", messages);
+                var requestEntity = new
+                {
+                    correlation_id = correlationId,
+                    messages
+                };
+
+                return CallCommand<Task>("write_messages", correlationId, requestEntity);
             }
         }
     }

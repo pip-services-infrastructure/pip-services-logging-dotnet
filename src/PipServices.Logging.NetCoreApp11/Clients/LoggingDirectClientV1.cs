@@ -1,7 +1,5 @@
-﻿using PipServices.Commons.Errors;
-using PipServices.Commons.Refer;
+﻿using PipServices.Commons.Refer;
 using PipServices.Net.Direct;
-using PipServices.Logging.Build;
 using PipServices.Logging.Logic;
 using PipServices.Commons.Data;
 using PipServices.Logging.Models;
@@ -10,31 +8,11 @@ using System.Threading.Tasks;
 
 namespace PipServices.Logging.Clients
 {
-    public class LoggingDirectClientV1 : DirectClient, ILoggingClientV1
+    public class LoggingDirectClientV1 : DirectClient<ILoggingController>, ILoggingClientV1
     {
-        private ILoggingBusinessLogic _controller;
-
         public LoggingDirectClientV1()
         {
-            // ??? TODO: Investigate later - it exists in node.js code
-            //_dependencyResolver.put('controller', new Descriptor("pip-services-logging", "controller", "*", "*", "*"))
-        }
-
-        public override bool IsOpened()
-        {
-            return _controller != null;
-        }
-
-        public override void SetReferences(IReferences references)
-        {
-            base.SetReferences(references);
-
-            _controller = references.GetOneRequired<ILoggingBusinessLogic>(Descriptors.LoggingController);
-
-            if (_controller == null)
-            {
-                throw new ConfigException(null, "NO_LOGGING_CONTROLLER", "Logging Controller is not configured");
-            }
+            _dependencyResolver.Put("controller", new Descriptor("pip-services-logging", "controller", "*", "*", "*"));
         }
 
         public Task<LogMessageV1[]> ReadErrorsAsync(string correlationId, FilterParams filter, PagingParams paging)

@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+
 using PipServices.Commons.Refer;
 using PipServices.Container;
 using PipServices.Logging.Build;
@@ -18,7 +19,7 @@ namespace PipServices.Logging.Run
 
         public Task RunAsync(string[] args, CancellationToken token)
         {
-            var configPath = args.Length > 0 ? args[0] : "./config/config.logging.yaml";
+            var configPath = args.Length > 0 ? args[0] : "../../config/config.yaml";
             return RunWithConfigFileAsync("logging", args, configPath, token);
         }
     }

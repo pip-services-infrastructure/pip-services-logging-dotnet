@@ -10,13 +10,14 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <PostBuildEvent></PostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PipServices.Commons" Version="2.0.3" />
-    <PackageReference Include="PipServices.Container" Version="2.0.1" />
-    <PackageReference Include="PipServices.Data" Version="2.0.2" />
-    <PackageReference Include="PipServices.Net" Version="2.0.5" />
+    <PackageReference Include="PipServices.Commons" Version="2.0.5" />
+    <PackageReference Include="PipServices.Container" Version="2.0.2" />
+    <PackageReference Include="PipServices.Data" Version="2.0.3" />
+    <PackageReference Include="PipServices.Net" Version="2.0.8" />
   </ItemGroup>
 
 </Project>

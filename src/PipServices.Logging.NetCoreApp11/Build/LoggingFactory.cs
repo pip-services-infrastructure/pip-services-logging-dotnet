@@ -65,7 +65,7 @@ namespace PipServices.Logging.Build
 
                 if (descriptor.Equals(Descriptors.LoggingRestService))
                 {
-                    return new LoggingRestService();
+                    return new LoggingHttpServiceV1();
                 }
 
                 if (descriptor.Equals(Descriptors.LoggingRestClient))
