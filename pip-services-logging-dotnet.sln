@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{99176F32-B2D4-4666-9DE6-1D7257705E2C}"
 EndProject
@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{1F87EE
 		config\config.yaml = config\config.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipServices.Logging.Models", "src\PipServices.Logging.Models\PipServices.Logging.Models.csproj", "{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{FD8E385D-B685-4223-9427-10DDF6538272}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD8E385D-B685-4223-9427-10DDF6538272}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD8E385D-B685-4223-9427-10DDF6538272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +48,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{26E2F102-F89C-4471-AAAC-B428BF1763EF} = {99176F32-B2D4-4666-9DE6-1D7257705E2C}
 		{FD8E385D-B685-4223-9427-10DDF6538272} = {906A9321-37B7-46B5-B195-E2E8CE693ACD}
+		{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2} = {99176F32-B2D4-4666-9DE6-1D7257705E2C}
 	EndGlobalSection
 EndGlobal

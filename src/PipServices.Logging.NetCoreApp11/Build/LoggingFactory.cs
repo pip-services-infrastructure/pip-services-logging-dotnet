@@ -1,7 +1,7 @@
 ﻿using System;
+
 using PipServices.Commons.Build;
 using PipServices.Commons.Refer;
-using PipServices.Logging.Clients;
 using PipServices.Logging.Logic;
 using PipServices.Logging.Persistence;
 using PipServices.Logging.Services;
@@ -32,16 +32,6 @@ namespace PipServices.Logging.Build
                 {
                     return true;
                 }
-
-                if (descriptor.Equals(Descriptors.LoggingRestClient))
-                {
-                    return true;
-                }
-
-                if (descriptor.Equals(Descriptors.LoggingDirectClient))
-                {
-                    return true;
-                }
             }
 
             return null;
@@ -66,16 +56,6 @@ namespace PipServices.Logging.Build
                 if (descriptor.Equals(Descriptors.LoggingRestService))
                 {
                     return new LoggingHttpServiceV1();
-                }
-
-                if (descriptor.Equals(Descriptors.LoggingRestClient))
-                {
-                    return new LoggingHttpClientV1();
-                }
-
-                if (descriptor.Equals(Descriptors.LoggingDirectClient))
-                {
-                    return new LoggingDirectClientV1();
                 }
             }
 

@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\PipServices.Logging.Models\PipServices.Logging.Models.csproj" />
     <ProjectReference Include="..\..\src\PipServices.Logging.NetCoreApp11\PipServices.Logging.NetCoreApp11.csproj" />
   </ItemGroup>
 

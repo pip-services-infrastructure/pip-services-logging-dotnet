@@ -2,9 +2,9 @@
 using PipServices.Commons.Errors;
 using PipServices.Commons.Log;
 using PipServices.Logging.Models;
+using PipServices.Commons.Data;
 
 using System;
-using PipServices.Commons.Data;
 
 namespace PipServices.Logging.NetCoreApp11.Test
 {
