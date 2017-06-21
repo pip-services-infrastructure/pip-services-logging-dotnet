@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PipServices.Logging.NetCore
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{906A9321-37B7-46B5-B195-E2E8CE693ACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipServices.Logging.NetCoreApp11.Test", "test\PipServices.Logging.NetCoreApp11.Test\PipServices.Logging.NetCoreApp11.Test.csproj", "{FD8E385D-B685-4223-9427-10DDF6538272}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PipServices.Logging.NetCoreApp11.Test", "test\PipServices.Logging.NetCoreApp11.Test\PipServices.Logging.NetCoreApp11.Test.csproj", "{FD8E385D-B685-4223-9427-10DDF6538272}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{D5A1720A-4090-43A1-B99C-D7DE47C891AD}"
 EndProject
@@ -21,7 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{1F87EE
 		config\config.yaml = config\config.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipServices.Logging.Models", "src\PipServices.Logging.Models\PipServices.Logging.Models.csproj", "{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PipServices.Logging.Models.NetCoreApp11", "src\PipServices.Logging.Models.NetCoreApp11\PipServices.Logging.Models.NetCoreApp11.csproj", "{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipServices.Logging.Net45", "src\PipServices.Logging.Net45\PipServices.Logging.Net45.csproj", "{F36B51F3-B31A-49F3-864D-EB50EBF9B7EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipServices.Logging.Models.Net45", "src\PipServices.Logging.Models.Net45\PipServices.Logging.Models.Net45.csproj", "{B975A2AA-8869-464B-B1DA-1A4C1AA97842}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipServices.Logging.Net45.Test", "test\PipServices.Logging.Net45.Test\PipServices.Logging.Net45.Test.csproj", "{A52D5EAD-043E-475F-BBB8-076468A8E73B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +47,18 @@ Global
 		{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F36B51F3-B31A-49F3-864D-EB50EBF9B7EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F36B51F3-B31A-49F3-864D-EB50EBF9B7EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F36B51F3-B31A-49F3-864D-EB50EBF9B7EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F36B51F3-B31A-49F3-864D-EB50EBF9B7EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B975A2AA-8869-464B-B1DA-1A4C1AA97842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B975A2AA-8869-464B-B1DA-1A4C1AA97842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B975A2AA-8869-464B-B1DA-1A4C1AA97842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B975A2AA-8869-464B-B1DA-1A4C1AA97842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A52D5EAD-043E-475F-BBB8-076468A8E73B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A52D5EAD-043E-475F-BBB8-076468A8E73B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A52D5EAD-043E-475F-BBB8-076468A8E73B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A52D5EAD-043E-475F-BBB8-076468A8E73B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,5 +67,8 @@ Global
 		{26E2F102-F89C-4471-AAAC-B428BF1763EF} = {99176F32-B2D4-4666-9DE6-1D7257705E2C}
 		{FD8E385D-B685-4223-9427-10DDF6538272} = {906A9321-37B7-46B5-B195-E2E8CE693ACD}
 		{4B366FC8-FFD1-4DBB-868D-A3DFBC24B1F2} = {99176F32-B2D4-4666-9DE6-1D7257705E2C}
+		{F36B51F3-B31A-49F3-864D-EB50EBF9B7EC} = {99176F32-B2D4-4666-9DE6-1D7257705E2C}
+		{B975A2AA-8869-464B-B1DA-1A4C1AA97842} = {99176F32-B2D4-4666-9DE6-1D7257705E2C}
+		{A52D5EAD-043E-475F-BBB8-076468A8E73B} = {906A9321-37B7-46B5-B195-E2E8CE693ACD}
 	EndGlobalSection
 EndGlobal

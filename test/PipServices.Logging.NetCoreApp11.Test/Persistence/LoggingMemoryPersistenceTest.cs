@@ -9,7 +9,7 @@ using PipServices.Commons.Log;
 using PipServices.Commons.Errors;
 using PipServices.Commons.Data;
 
-namespace PipServices.Logging.NetCoreApp11.Test.Persistence
+namespace PipServices.Logging.Test.Persistence
 {
 
     public class LoggingMemoryPersistenceTest : AbstractTest

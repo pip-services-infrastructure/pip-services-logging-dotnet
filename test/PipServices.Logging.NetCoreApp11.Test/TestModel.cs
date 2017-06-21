@@ -6,7 +6,7 @@ using PipServices.Commons.Data;
 
 using System;
 
-namespace PipServices.Logging.NetCoreApp11.Test
+namespace PipServices.Logging.Test
 {
     public class TestModel
     {

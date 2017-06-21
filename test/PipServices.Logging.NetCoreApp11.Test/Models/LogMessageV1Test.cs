@@ -6,7 +6,7 @@ using System;
 
 using Xunit;
 
-namespace PipServices.Logging.NetCoreApp11.Test.Models
+namespace PipServices.Logging.Test.Models
 {
     public class LogMessageV1Test
     {

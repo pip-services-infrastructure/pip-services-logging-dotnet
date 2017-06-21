@@ -12,7 +12,7 @@ using PipServices.Commons.Log;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace PipServices.Logging.NetCoreApp11.Test.Logic
+namespace PipServices.Logging.Test.Logic
 {
     public class LoggingControllerTest : AbstractTest
     {

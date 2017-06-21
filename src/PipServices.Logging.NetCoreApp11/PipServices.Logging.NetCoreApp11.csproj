@@ -11,6 +11,8 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <PostBuildEvent></PostBuildEvent>
+    <RootNamespace>PipServices.Logging</RootNamespace>
+    <Authors>Alexander Mazur</Authors>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PipServices.Logging.Models\PipServices.Logging.Models.csproj" />
+    <ProjectReference Include="..\PipServices.Logging.Models.NetCoreApp11\PipServices.Logging.Models.NetCoreApp11.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 using Xunit;
 
-namespace PipServices.Logging.NetCoreApp11.Test.Services
+namespace PipServices.Logging.Test.Services
 {
     public class LoggingHttpServiceV1Test : AbstractTest
     {

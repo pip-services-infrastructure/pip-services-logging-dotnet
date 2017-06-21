@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
-    <AssemblyName>PipServices.Logging.Models</AssemblyName>
-    <PackageId>PipServices.Logging.Models</PackageId>
+    <AssemblyName>PipServices.Logging.Models.NetCoreApp11</AssemblyName>
+    <PackageId>PipServices.Logging.Models.NetCoreApp11</PackageId>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <PostBuildEvent></PostBuildEvent>
+    <Authors>Alexander Mazur</Authors>
   </PropertyGroup>
 
   <ItemGroup>

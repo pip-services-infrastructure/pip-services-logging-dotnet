@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PipServices.Logging.NetCoreApp11.Test
+namespace PipServices.Logging.Test
 {
     public abstract class AbstractTest : IDisposable
     {
